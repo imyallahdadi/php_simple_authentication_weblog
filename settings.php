@@ -54,7 +54,7 @@ if(isset($_SESSION['is_logged']) === true ) {
     $sql = "SELECT * FROM users WHERE user_id = " . $_SESSION['user_id'];
     $result = mysqli_query($conn, $sql);
     $user_information = mysqli_fetch_assoc($result);
-    //print_r($user_information);
+    print_r($user_information);
 
 
   }catch (mysqli_sql_exception $e){
