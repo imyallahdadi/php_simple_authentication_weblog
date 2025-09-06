@@ -33,7 +33,7 @@ if(isset($_SESSION['is_logged']) === true ) {
         <a class="btn" href="#">Write</a>
         <a class="btn" href="#">Posts</a>
         <a class="btn" href="settings.php">Setings</a>
-        <a class="btn" href="/logout.php" >Log out</a>(<?php echo $_SESSION['username']?>)
+        <a class="btn" href="/logout.php" >Log out (<?php echo $_SESSION['username']?>)</a>
 
       </nav>
     </header>

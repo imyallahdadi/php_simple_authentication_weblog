@@ -54,7 +54,7 @@ if(isset($_SESSION['is_logged']) === true ) {
     $sql = "SELECT * FROM users WHERE user_id = " . $_SESSION['user_id'];
     $result = mysqli_query($conn, $sql);
     $user_information = mysqli_fetch_assoc($result);
-    print_r($user_information);
+    //print_r($user_information);
 
 
   }catch (mysqli_sql_exception $e){
@@ -64,110 +64,66 @@ if(isset($_SESSION['is_logged']) === true ) {
 
 ?>
 
+
 <body>
   <div class="container">
     <header>
       <div class="brand">
         <div class="logo">SS</div>
         <div>
-          <h1>Welcome to the settings</h1>
+          <h1>Welcome <?php echo $_SESSION['username']; ?></h1>
           <p class="lead">A minimal, responsive template for your website</p>
         </div>
       </div>
 
       <nav>
-        <a class="btn primary" href="#">Panel</a>
+        <a class="btn" href="user_panel.php">Panel</a>
         <a class="btn" href="#">Write</a>
         <a class="btn" href="#">Posts</a>
-        <a class="btn" href="settings.php">Setings</a>
-        <a class="btn" href="/logout.php" >Log out</a>(<?php echo $_SESSION['username']?>)
+        <a class="btn primary" href="settings.php">Setings</a>
+        <a class="btn" href="/logout.php" >Log out (<?php echo $_SESSION['username']?>)</a>
 
       </nav>
     </header>
 
-    <section class="hero">
-      <div class="card">
-        <h2>Made for speed, readability and style</h2>
-        <p>Ship a clean landing page fast. This template includes a hero, feature cards, recent posts list and a simple sidebar — all responsive and easy to customize.</p>
- 
-        
-        <div class="features">
-          <div class="feature">
-            <h4>Lightweight</h4>
-            <p>Small CSS footprint so pages load quickly across devices.</p>
-          </div>
-          <div class="feature">
-            <h4>Responsive</h4>
-            <p>Layouts adapt from desktop to mobile without extra work.</p>
-          </div>
-          <div class="feature">
-            <h4>Accessible</h4>
-            <p>High contrast and clear focus states for better usability.</p>
-          </div>
-        </div>
 
-        <div class="posts" id="posts">
-          <div class="post">
-            <div>
-              <strong>How I built a tiny static blog</strong>
-              <div class="meta">June 23 — 5 min read</div>
-            </div>
-            <div><a href="#">Read</a></div>
-          </div>
+    <img src="<?='/get_image.php?imgsrc=statics/images/' . md5($_SESSION['user_id']) . '.png'; ?>" onerror="this.src='/statics/images/user.png'" width="200" height="200"></img>
 
-          <div class="post">
-            <div>
-              <strong>Designing a minimal interface</strong>
-              <div class="meta">May 12 — 3 min read</div>
-            </div>
-            <div><a href="#">Read</a></div>
-          </div>
-        </div>
-      </div>
+    <input type="file" id="imageUpload" accept="image/*">
+    <progress id="uploadProgress" max="100" value="0"></progress>
+    <div id="message"></div>
 
-      <aside class="sidebar">
-        <div class="card small">
-          <h3>About</h3>
-          <p class="meta">Hi — I'm a developer who likes clean UI. Use this template as a starting point for your personal site or project.</p>
-        </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/statics/upload.js"></script>
 
-        <div style="height:14px"></div>
 
-        <div class="card small">
-          <h3>Newsletter</h3>
-          <p class="meta">Get updates once a month.</p>
-          <form onsubmit="alert('Subscribed!');return false;" style="margin-top:10px;display:flex;gap:8px">
-            <input aria-label="email" placeholder="you@example.com" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"/>
-            <button class="btn primary" type="submit">Subscribe</button>
-          </form>
-        </div>
-      </aside>
-    </section>
-        <form action="settings.php" method="POST">
-        <h2>Update User</h2>
-          <!-- Hidden user_id -->
-          <input type="hidden" name="user_id" value="<?= $user_information['user_id']; ?>">
 
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" value="<?= $user_information['username']; ?>" disabled><br><br>
+    <form action="settings.php" method="POST">
+    <h2>Update User</h2>
+      <!-- Hidden user_id -->
+      <input type="hidden" name="user_id" value="<?= $user_information['user_id']; ?>">
 
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" value="<?= $user_information['email']; ?>" disabled><br><br>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" value="<?= $user_information['username']; ?>" disabled><br><br>
 
-          <label for="first_name">First Name</label>
-          <input type="text" id="first_name" name="first_name" value="<?= $user_information['first_name']; ?>"><br><br>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" value="<?= $user_information['email']; ?>" disabled><br><br>
 
-          <label for="last_name">Last Name</label>
-          <input type="text" id="last_name" name="last_name" value="<?= $user_information['last_name']; ?>"><br><br>
+      <label for="first_name">First Name</label>
+      <input type="text" id="first_name" name="first_name" value="<?= $user_information['first_name']; ?>"><br><br>
 
-          <label for="bio">Bio</label>
-          <textarea id="bio" name="bio"><?= $user_information['bio']; ?></textarea><br><br>
+      <label for="last_name">Last Name</label>
+      <input type="text" id="last_name" name="last_name" value="<?= $user_information['last_name']; ?>"><br><br>
 
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" value=""><br><br>
+      <label for="bio">Bio</label>
+      <textarea id="bio" name="bio"><?= $user_information['bio']; ?></textarea><br><br>
 
-          <button type="submit">Update</button>
-        </form>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" value=""><br><br>
+
+      <button type="submit">Update</button>
+    </form>
+
 
 <?php } else{ ?>
 
