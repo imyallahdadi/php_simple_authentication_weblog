@@ -30,8 +30,8 @@ if(isset($_SESSION['is_logged']) === true ) {
 
       <nav>
         <a class="btn primary" href="#">Panel</a>
-        <a class="btn" href="#">Write</a>
-        <a class="btn" href="#">Posts</a>
+        <a class="btn" href="write_post.php">Write</a>
+        <a class="btn" href="my_posts.php">Posts</a>
         <a class="btn" href="settings.php">Setings</a>
         <a class="btn" href="/logout.php" >Log out (<?php echo $_SESSION['username']?>)</a>
 

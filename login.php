@@ -34,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       header('Location: user_panel.php');
       exit;
     }else {
-        $message = "Invalid username/password. please try again. if you cannot remmember your password please <a href = '/forget_password.php?username=$username' style = 'width:100%'>click here";
-        $username = $_POST['username'] ?? '';
+        $message = "Invalid username/password. please try again. if you cannot remmember your password please <a href = '/forget_password.php?username=$username' style = 'width:100%'>click here</a>";
+        //$username = $_POST['username'] ?? '';
 
     }
 }
@@ -51,12 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       
       <button type="submit" class="btn primary" style="width:50%;">Login</button>
       <a class = "btn primary" href = "/register.php" style = "width:50%">Sign Up</a><br></br>
-
-      <?php
-      if (isset($username)) echo "<a class = 'btn primary' href = '/forget_password.php?username=$username' style = 'width:100%'>forget password</a>";
-      else echo "<a class = 'btn primary' href = '/forget_password.php' style = 'width:100%'>forget password</a>";
-      ?>
-
     </form>
 
 

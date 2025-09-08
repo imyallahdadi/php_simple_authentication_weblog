@@ -51,13 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input type="password" id="password" name="password" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;" />
       
       <label for="first_name">First name</label><br />
-      <input type="text" id="first_name" name="first_name" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;" />
+      <input type="text" id="first_name" name="first_name" style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;" />
 
       <label for="last_name">Last name</label><br />
-      <input type="text" id="last_name" name="last_name" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;" />
+      <input type="text" id="last_name" name="last_name" style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;" />
 
       <label for="bio">Bio</label><br />
-      <input type="text" id="bio" name="bio" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;" />
+      <input type="text" id="bio" name="bio" style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;" />
 
       <label for="email">Email *</label><br />
       <input type="text" id="email" name="email" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;" />

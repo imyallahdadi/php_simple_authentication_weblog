@@ -78,8 +78,8 @@ if(isset($_SESSION['is_logged']) === true ) {
 
       <nav>
         <a class="btn" href="user_panel.php">Panel</a>
-        <a class="btn" href="#">Write</a>
-        <a class="btn" href="#">Posts</a>
+        <a class="btn" href="write_post.php">Write</a>
+        <a class="btn" href="my_posts.php">Posts</a>
         <a class="btn primary" href="settings.php">Setings</a>
         <a class="btn" href="/logout.php" >Log out (<?php echo $_SESSION['username']?>)</a>
 
@@ -103,22 +103,22 @@ if(isset($_SESSION['is_logged']) === true ) {
       <!-- Hidden user_id -->
       <input type="hidden" name="user_id" value="<?= $user_information['user_id']; ?>">
 
-      <label for="username">Username</label>
+      <label for="username">Username</label><br>
       <input type="text" id="username" name="username" value="<?= $user_information['username']; ?>" disabled><br><br>
 
-      <label for="email">Email</label>
+      <label for="email">Email</label><br>
       <input type="email" id="email" name="email" value="<?= $user_information['email']; ?>" disabled><br><br>
 
-      <label for="first_name">First Name</label>
+      <label for="first_name">First Name</label><br>
       <input type="text" id="first_name" name="first_name" value="<?= $user_information['first_name']; ?>"><br><br>
 
-      <label for="last_name">Last Name</label>
+      <label for="last_name">Last Name</label><br>
       <input type="text" id="last_name" name="last_name" value="<?= $user_information['last_name']; ?>"><br><br>
 
-      <label for="bio">Bio</label>
+      <label for="bio">Bio</label><br>
       <textarea id="bio" name="bio"><?= $user_information['bio']; ?></textarea><br><br>
 
-      <label for="password">Password</label>
+      <label for="password">Password</label><br>
       <input type="password" id="password" name="password" value=""><br><br>
 
       <button type="submit">Update</button>
