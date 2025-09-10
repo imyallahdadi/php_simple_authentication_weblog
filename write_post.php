@@ -30,7 +30,8 @@ if(isset($_SESSION['is_logged']) === true ) {
       $result = mysqli_query($conn, $sql);
 
       if($result === true){
-        header("Location: ./my_posts.php");
+        header("Location: ./my_posts.php?msg=your post published successfully.");
+        exit;
       }
 
     }catch (mysqli_sql_exception $e){
@@ -61,7 +62,7 @@ if(isset($_SESSION['is_logged']) === true ) {
 
       <nav>
         <a class="btn" href="user_panel.php">Panel</a>
-        <a class="btn primary" href="blog_post.php">Write</a>
+        <a class="btn primary" href="write_post.php">Write</a>
         <a class="btn" href="my_posts.php">Posts</a>
         <a class="btn" href="settings.php">Setings</a>
         <a class="btn" href="/logout.php" >Log out (<?php echo $_SESSION['username']?>)</a>

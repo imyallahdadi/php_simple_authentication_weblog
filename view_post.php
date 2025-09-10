@@ -17,13 +17,23 @@ include 'db.php';
 
 if(isset($_SESSION['is_logged']) === true ) {
 
-  
+    if(array_key_exists('post_id' , $_GET)){
+        $post_id = $_GET['post_id'];
+    }
+
+    $sql = "SELECT * FROM posts WHERE post_id =" . $post_id;
+    $result = mysqli_query($conn, $sql);
+    $rows = mysqli_fetch_all($result);
+    print_r($rows);
 
 
-  $sql = "SELECT * FROM posts WHERE user_id = " . $_SESSION['user_id'];
-  $result = mysqli_query($conn, $sql);
-  $rows = mysqli_fetch_all($result);
-  print_r($rows);
+    $sql = "SELECT category_name FROM categories WHERE category_id = " . $rows[0][2];
+    $result = mysqli_query($conn, $sql);
+    $category = mysqli_fetch_all($result);
+    $category_name = $category[0][0];
+
+
+
 ?>
 
 
@@ -53,15 +63,14 @@ if(isset($_SESSION['is_logged']) === true ) {
 
 <?php
 
+
+
   foreach($rows as $row){
 
+
     echo 'title: ' , $row[3] , ', publication_date: ' , $row[5] , ' <a href="/view_post.php?post_id=' . $row[0] . '">view post</a><br>';
-  
   }
 
-  if(array_key_exists('msg' , $_GET)){
-    $message = $_GET['msg'];
-  }
   
   if(isset($message)){
     echo "<p>$message</p>";
