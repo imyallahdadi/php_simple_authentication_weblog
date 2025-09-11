@@ -23,7 +23,6 @@ if(isset($_SESSION['is_logged']) === true ) {
   $sql = "SELECT * FROM posts WHERE user_id = " . $_SESSION['user_id'];
   $result = mysqli_query($conn, $sql);
   $rows = mysqli_fetch_all($result);
-  print_r($rows);
 ?>
 
 
@@ -55,7 +54,7 @@ if(isset($_SESSION['is_logged']) === true ) {
 
   foreach($rows as $row){
 
-    echo 'title: ' , $row[3] , ', publication_date: ' , $row[5] , ' <a href="/view_post.php?post_id=' . $row[0] . '">view post</a><br>';
+    echo 'title: ' , $row[3] , ', publication_date: ' , $row[5] , ' | <a href="/edit_post.php?post_id=' . $row[0] . '">view post</a>' , ' | <a href="/edit_post.php?post_id=' . $row[0] . '">edit post</a><br>';
   
   }
 
