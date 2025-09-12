@@ -33,7 +33,7 @@ if(isset($_SESSION['is_logged']) === true ) {
         <div class="logo">SS</div>
         <div>
           <h1>Welcome <?php echo $_SESSION['username']; ?></h1>
-          <p class="lead">A minimal, responsive template for your website</p>
+          <p class="lead">Wish you have a good time...</p>
         </div>
       </div>
 
@@ -50,13 +50,30 @@ if(isset($_SESSION['is_logged']) === true ) {
     <h2>My posts</h2>
 
 
+    <div class="posts" id="posts">
+
+      <?php foreach($rows as $row){ ?>
+
+      <div class="post">
+        <div>
+          <strong><?php echo '- title: ' , $row[3] , ' | publication_date: ' , $row[5] . '<br>'; ?></strong>
+          <div class="meta"><?php echo $row[5];  ?></div>          
+        </div>
+        <div>
+          <a href="/view_post.php?post_id=<?php echo $row[0] ?>">Read | </a>
+          <a href="/view_post.php?post_id=<?php echo $row[0] ?>">edit | </a>
+          <a href="/view_post.php?post_id=<?php echo $row[0] ?>">delete</a>
+        </div>
+      </div>
+
+      <?php } ?>
+
+    </div>
+
+
 <?php
 
-  foreach($rows as $row){
-
-    echo 'title: ' , $row[3] , ', publication_date: ' , $row[5] , ' | <a href="/edit_post.php?post_id=' . $row[0] . '">view post</a>' , ' | <a href="/edit_post.php?post_id=' . $row[0] . '">edit post</a><br>';
-  
-  }
+  echo "<br>";
 
   if(array_key_exists('msg' , $_GET)){
     $message = $_GET['msg'];

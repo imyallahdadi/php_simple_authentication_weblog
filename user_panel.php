@@ -13,7 +13,15 @@
 
 session_start();
 
+include 'db.php';
+
 if(isset($_SESSION['is_logged']) === true ) {
+
+  $sql = "SELECT * FROM posts";
+  $result = mysqli_query($conn, $sql);
+  $rows = mysqli_fetch_all($result);
+
+
 
 ?>
 
@@ -24,12 +32,12 @@ if(isset($_SESSION['is_logged']) === true ) {
         <div class="logo">SS</div>
         <div>
           <h1>Welcome <?php echo $_SESSION['username']; ?></h1>
-          <p class="lead">A minimal, responsive template for your website</p>
+          <p class="lead">Wish you have a good time...</p>
         </div>
       </div>
 
       <nav>
-        <a class="btn primary" href="#">Panel</a>
+        <a class="btn primary" href="user_panel.php">Panel</a>
         <a class="btn" href="write_post.php">Write</a>
         <a class="btn" href="my_posts.php">Posts</a>
         <a class="btn" href="settings.php">Setings</a>
@@ -40,59 +48,60 @@ if(isset($_SESSION['is_logged']) === true ) {
 
     <section class="hero">
       <div class="card">
-        <h2>Made for speed, readability and style</h2>
-        <p>Ship a clean landing page fast. This template includes a hero, feature cards, recent posts list and a simple sidebar — all responsive and easy to customize.</p>
+        <h2>Explore, enjoy and learn...</h2>
 
         <div class="features">
-          <div class="feature">
-            <h4>Lightweight</h4>
-            <p>Small CSS footprint so pages load quickly across devices.</p>
-          </div>
-          <div class="feature">
-            <h4>Responsive</h4>
-            <p>Layouts adapt from desktop to mobile without extra work.</p>
-          </div>
-          <div class="feature">
-            <h4>Accessible</h4>
-            <p>High contrast and clear focus states for better usability.</p>
-          </div>
+        <h1>All posts</h1>
+
         </div>
 
         <div class="posts" id="posts">
-          <div class="post">
-            <div>
-              <strong>How I built a tiny static blog</strong>
-              <div class="meta">June 23 — 5 min read</div>
-            </div>
-            <div><a href="#">Read</a></div>
-          </div>
+
+          <?php foreach($rows as $row){
+
+            $sql = "SELECT username FROM users WHERE user_id =" . $row[1];
+            $result = mysqli_query($conn, $sql);
+            $get_uname = mysqli_fetch_all($result);
+            $username = $get_uname[0][0];
+
+          
+          ?>
 
           <div class="post">
             <div>
-              <strong>Designing a minimal interface</strong>
-              <div class="meta">May 12 — 3 min read</div>
+              <strong><?php echo $username . ' | ' . $row[3];  ?></strong>
+              <div class="meta"><?php echo $row[5];  ?></div>          
             </div>
-            <div><a href="#">Read</a></div>
+            <div><a href="/view_post.php?post_id=<?php echo $row[0] ?>">Read</a></div>
           </div>
+
+          <?php } ?>
+
         </div>
       </div>
 
-      <aside class="sidebar">
-        <div class="card small">
-          <h3>About</h3>
-          <p class="meta">Hi — I'm a developer who likes clean UI. Use this template as a starting point for your personal site or project.</p>
-        </div>
+      
 
+      <aside class="sidebar">
+
+        <div class="card small">
+          <h3>Search</h3>
+          <p class="meta">in all users and posts...</p>
+          <form onsubmit="alert('Subscribed!');return false;" style="margin-top:10px;display:flex;gap:8px">
+            <input aria-label="email" placeholder="name, email, title, ..." style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"/>
+            <button class="btn primary" type="submit">FInd</button>
+          </form>
+        </div>
+       
         <div style="height:14px"></div>
 
         <div class="card small">
-          <h3>Newsletter</h3>
-          <p class="meta">Get updates once a month.</p>
-          <form onsubmit="alert('Subscribed!');return false;" style="margin-top:10px;display:flex;gap:8px">
-            <input aria-label="email" placeholder="you@example.com" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"/>
-            <button class="btn primary" type="submit">Subscribe</button>
-          </form>
+          <h3>Users</h3>
+          <p class="meta">Hi — I'm a developer who likes clean UI. Use this template as a starting point for your personal site or project.</p>
+          <p class="meta">Hi — I'm a developer who likes clean UI. Use this template as a starting point for your personal site or project.</p>
+
         </div>
+
       </aside>
     </section>
 

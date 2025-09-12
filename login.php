@@ -40,6 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+if(isset($_SESSION['is_logged']) === true){
+  header('Location: user_panel.php');
+  exit;
+}
+
 ?>
 
     <form action="login.php" method="post">

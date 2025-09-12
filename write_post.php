@@ -56,7 +56,7 @@ if(isset($_SESSION['is_logged']) === true ) {
         <div class="logo">SS</div>
         <div>
           <h1>Welcome <?php echo $_SESSION['username']; ?></h1>
-          <p class="lead">A minimal, responsive template for your website</p>
+          <p class="lead">Wish you have a good time...</p>
         </div>
       </div>
 
