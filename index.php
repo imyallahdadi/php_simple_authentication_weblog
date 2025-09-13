@@ -71,7 +71,7 @@ include 'db.php';
   <div class="container">
     <header>
       <div class="brand">
-        <div class="logo">SS</div>
+        <div class="logo">Logo</div>
         <div>
           <h1>Welcome</h1>
           <p class="lead">We wish you a great time</p>

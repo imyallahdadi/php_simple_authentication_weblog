@@ -7,6 +7,7 @@
   <meta name="description" content="A clean and smooth HTML template." />
   <link rel="stylesheet" href="./statics/styles.css" />
   <script src="/statics/functions.js"></script>
+
 </head>
 <style>
       .user-list{
@@ -163,6 +164,7 @@ function get_username($conn, $post_user_id){
 
       </aside>
     </section>
+
 
 <?php } else{ ?>
 
