@@ -39,7 +39,7 @@
 
     /* sidebar */
     .sidebar h3{margin:0 0 12px 0}
-    .card.small{padding:16px}
+    .card.small{padding:16px;}
 
     /* posts */
     .posts{margin-top:26px;display:flex;flex-direction:column;gap:12px}
@@ -63,3 +63,4 @@
     .btn, .post, .feature{transition:transform .18s ease, box-shadow .18s ease}
     .btn:hover{transform:translateY(-3px)}
     .post:hover, .feature:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(2,6,23,0.6)}
+

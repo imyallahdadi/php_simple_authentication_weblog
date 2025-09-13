@@ -86,7 +86,7 @@ if(isset($_SESSION['is_logged']) === true ) {
       </nav>
     </header>
 
-
+ 
     <img src="<?='/get_image.php?imgsrc=statics/images/' . md5($_SESSION['user_id']) . '.png'; ?>" onerror="this.src='/statics/images/user.png'" width="200" height="200"></img>
 
     <input type="file" id="imageUpload" accept="image/*">
@@ -97,33 +97,32 @@ if(isset($_SESSION['is_logged']) === true ) {
     <script src="/statics/upload.js"></script>
 
 
+      <form action="settings.php" method="POST">
+      <h2>Update User</h2>
+        <!-- Hidden user_id -->
+        <input type="hidden" name="user_id" value="<?= $user_information['user_id']; ?>">
 
-    <form action="settings.php" method="POST">
-    <h2>Update User</h2>
-      <!-- Hidden user_id -->
-      <input type="hidden" name="user_id" value="<?= $user_information['user_id']; ?>">
+        <label for="username">Username</label><br>
+        <input type="text" id="username" name="username" value="<?= $user_information['username']; ?>" disabled><br><br>
 
-      <label for="username">Username</label><br>
-      <input type="text" id="username" name="username" value="<?= $user_information['username']; ?>" disabled><br><br>
+        <label for="email">Email</label><br>
+        <input type="email" id="email" name="email" value="<?= $user_information['email']; ?>" disabled><br><br>
 
-      <label for="email">Email</label><br>
-      <input type="email" id="email" name="email" value="<?= $user_information['email']; ?>" disabled><br><br>
+        <label for="first_name">First Name</label><br>
+        <input type="text" id="first_name" name="first_name" value="<?= $user_information['first_name']; ?>"><br><br>
 
-      <label for="first_name">First Name</label><br>
-      <input type="text" id="first_name" name="first_name" value="<?= $user_information['first_name']; ?>"><br><br>
+        <label for="last_name">Last Name</label><br>
+        <input type="text" id="last_name" name="last_name" value="<?= $user_information['last_name']; ?>"><br><br>
 
-      <label for="last_name">Last Name</label><br>
-      <input type="text" id="last_name" name="last_name" value="<?= $user_information['last_name']; ?>"><br><br>
+        <label for="bio">Bio</label><br>
+        <textarea id="bio" name="bio"><?= $user_information['bio']; ?></textarea><br><br>
 
-      <label for="bio">Bio</label><br>
-      <textarea id="bio" name="bio"><?= $user_information['bio']; ?></textarea><br><br>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password" value=""><br><br>
 
-      <label for="password">Password</label><br>
-      <input type="password" id="password" name="password" value=""><br><br>
-
-      <button type="submit">Update</button>
-    </form>
-
+        <button type="submit">Update</button>
+      </form>
+  </div>
 
 <?php } else{ ?>
 
