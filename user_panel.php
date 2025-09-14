@@ -65,10 +65,16 @@
 session_start();
 
 include 'db.php';
+include 'functions.php';
 
 if(isset($_SESSION['is_logged']) === true ) {
 
-  $sql = "SELECT * FROM posts";
+  if(array_key_exists('categoryid', $_GET)){
+    $sql="SELECT * FROM posts WHERE category_id=" . $_GET['categoryid'];
+  } else{
+    $sql = "SELECT * FROM posts";
+  }
+
   $result = mysqli_query($conn, $sql);
   $rows = mysqli_fetch_all($result);
 
@@ -77,13 +83,6 @@ if(isset($_SESSION['is_logged']) === true ) {
   $users = mysqli_fetch_all($result);
 
 
-function get_username($conn, $post_user_id){
-  $sql = "SELECT username FROM users WHERE user_id =" . $post_user_id;
-  $result = mysqli_query($conn, $sql);
-  $get_uname = mysqli_fetch_assoc($result);
-  return $get_uname['username'];
-
-}
 
 ?>
 
@@ -117,17 +116,17 @@ function get_username($conn, $post_user_id){
         <div class="features">
         <h1>All posts</h1>
         </div>
-
+        <p>Category | Title | Username</P>
         <div class="posts" id="posts">
 
           <?php foreach($rows as $row){ ?>
 
           <div class="post">
             <div>
-              <strong><?php echo get_username($conn, $row[1]) . ' | ' . $row[3];  ?></strong>
+              <strong><?php echo categoryid_to_name($conn, $row[2]) . ' | ' . $row[3] . ' | ' .  uid_to_uname($conn, $row[1]); ?></strong>
               <div class="meta"><?php echo $row[5];  ?></div>          
             </div>
-            <div><a href="/view_post.php?post_id=<?php echo $row[0] ?>">Read</a></div>
+            <div><a href="/view_post.php?post_id=<?php echo $row[0] ?>">Read</a><a href="/accounting.php?username=<?php echo uid_to_uname($conn, $row[1]) ?>"> | Profile</a></div>
           </div>
 
           <?php } ?>

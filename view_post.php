@@ -48,6 +48,12 @@
     .btn-view:hover {
       background: #0056b3;
     }
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* عکس پر کنه */
+      border-radius: inherit; /* گردی همون لوگو */
+    }
   </style>
 </head>
 
@@ -74,13 +80,15 @@ if(isset($_SESSION['is_logged']) === true ) {
   <body>
     <div class="container">
       <header>
-        <div class="brand">
-          <div class="logo">SS</div>
-          <div>
-            <h1>Welcome <?php echo $_SESSION['username']; ?></h1>
-            <p class="lead">A minimal, responsive template for your website</p>
-          </div>
+      <div class="brand">
+        <div class="logo">
+          <img src="<?='/get_image.php?imgsrc=statics/images/' . md5($_SESSION['user_id']) . '.png'; ?>" onerror="this.src='/statics/images/user.png'" alt="logo"></img>
         </div>
+        <div>
+          <h1>Welcome <?php echo $_SESSION['username']; ?></h1>
+          <p class="lead">Wish you have a good time...</p>
+        </div>
+      </div>
 
         <nav>
           <a class="btn" href="user_panel.php">Panel</a>

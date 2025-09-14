@@ -8,12 +8,22 @@
   <link rel="stylesheet" href="./statics/styles.css" />
   <script src="/statics/functions.js"></script>
 </head>
+<style>
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* عکس پر کنه */
+      border-radius: inherit; /* گردی همون لوگو */
+    }
+
+</style>
 
 <?php
 
 session_start();
 
 include 'db.php';
+include 'functions.php';
 
 if(isset($_SESSION['is_logged']) === true ) {
 
@@ -30,7 +40,9 @@ if(isset($_SESSION['is_logged']) === true ) {
   <div class="container">
     <header>
       <div class="brand">
-        <div class="logo">SS</div>
+        <div class="logo">
+          <img src="<?='/get_image.php?imgsrc=statics/images/' . md5($_SESSION['user_id']) . '.png'; ?>" onerror="this.src='/statics/images/user.png'" alt="logo"></img>
+        </div>
         <div>
           <h1>Welcome <?php echo $_SESSION['username']; ?></h1>
           <p class="lead">Wish you have a good time...</p>
@@ -56,7 +68,7 @@ if(isset($_SESSION['is_logged']) === true ) {
 
       <div class="post">
         <div>
-          <strong><?php echo '- title: ' , $row[3] , ' | publication_date: ' , $row[5] . '<br>'; ?></strong>
+          <strong><?php echo '- category: ' . categoryid_to_name($conn, $row[2]) . ' | title: ' , $row[3] , ' | publication_date: ' , $row[5] . '<br>'; ?></strong>
           <div class="meta"><?php echo $row[5];  ?></div>          
         </div>
         <div>

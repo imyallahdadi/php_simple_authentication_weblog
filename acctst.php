@@ -68,23 +68,20 @@ if(isset($_SESSION['is_logged']) === true){ ?>
             <br>
             <div>
                 <h1>All posts of <?php echo $username_safe ?></h1>
-                <p>Category | Title | Username</p>
             </div>
             <div class="posts" id="posts">
 
-              <?php 
-              if($user_posts){
-              foreach($user_posts as $user_post){ ?>
+            <?php foreach($user_posts as $user_post){ ?>
 
-              <div class="post">
-                  <div>
-                  <strong><?php echo categoryid_to_name($conn, $user_post[2]) . ' | ' . $user_post[3] . ' | ' .  $row['username'] ?></strong>
-                  <div class="meta"><?php echo $user_post[5];  ?></div>          
-                  </div>
-                  <div><a href="/view_post.php?post_id=<?php echo $user_post[0] ?>">Read</a></div>
-              </div>
+            <div class="post">
+                <div>
+                <strong><?php echo categoryid_to_name($conn, $user_post[2]) . ' | ' . $user_post[3] . ' | ' .  $row['username'] ?></strong>
+                <div class="meta"><?php echo $user_post[5];  ?></div>          
+                </div>
+                <div><a href="/view_post.php?post_id=<?php echo $user_post[0] ?>">Read</a></div>
+            </div>
 
-              <?php } }else echo "Empty :(" ?>
+            <?php } ?>
 
             </div>
         </div>
@@ -92,6 +89,7 @@ if(isset($_SESSION['is_logged']) === true){ ?>
       
 
       <aside class="sidebar">
+
         <div class="card small">
             <img src="<?='/get_image.php?imgsrc=statics/images/' . md5($row['user_id']) . '.png'; ?>" onerror="this.src='/statics/images/user.png'" alt="logo" width="300" height="300"></img>
             <h2><?php echo $row['username']; ?></h2>
@@ -102,8 +100,9 @@ if(isset($_SESSION['is_logged']) === true){ ?>
             <p class="registration">Register date: <?php echo $row['registration_data']; ?></p>
 
         </div>
-      </aside>
+       
 
+      </aside>
     </section>
 <?php }else{ ?>
 
