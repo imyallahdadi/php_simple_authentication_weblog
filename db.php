@@ -7,6 +7,7 @@ $db_servername = "localhost"; // Or the server IP
 $db_username   = "iman";      // Your MySQL username
 $db_password   = "1234";          // Your MySQL password
 $db_dbname     = "iman_weblog";   // Your database name
+$backupPath = '/var/www/tst_php/admin/backups/';
 
 // Create connection
 $conn = new mysqli($db_servername, $db_username, $db_password, $db_dbname);

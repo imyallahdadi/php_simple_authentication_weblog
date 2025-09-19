@@ -69,8 +69,8 @@ include 'functions.php';
 
 if(isset($_SESSION['is_logged']) === true ) {
 
-  if(array_key_exists('categoryid', $_GET)){
-    $sql="SELECT * FROM posts WHERE category_id=" . $_GET['categoryid'];
+  if(array_key_exists('categoryid', $_GET) and $_GET['categoryid'] != "all"){
+    $sql="SELECT * FROM posts WHERE category_id=" . (int)$_GET['categoryid'];
   } else{
     $sql = "SELECT * FROM posts";
   }
@@ -81,6 +81,10 @@ if(isset($_SESSION['is_logged']) === true ) {
   $sql = "SELECT user_id,username FROM users ORDER BY user_id";
   $result = mysqli_query($conn, $sql);
   $users = mysqli_fetch_all($result);
+
+  $sql="SELECT * FROM categories";
+  $result=mysqli_query($conn, $sql);
+  $categoris=mysqli_fetch_all($result);
 
 
 
@@ -116,7 +120,18 @@ if(isset($_SESSION['is_logged']) === true ) {
         <div class="features">
         <h1>All posts</h1>
         </div>
-        <p>Category | Title | Username</P>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <p style="margin: 0;">Category | Title | Username</P>
+          <select id="categories" name="categories" style = "width:20%; height:40%;" onchange="window.location.href='/user_panel.php?categoryid=' + this.value ">
+          <option value="all" <?= (isset($_GET['categoryid']) && $_GET['categoryid'] === 'all') ? 'selected' : '' ?>>All</option>
+          
+          <?php foreach ($categoris as $category_name) {
+            $selected = (isset($_GET['categoryid']) && $_GET['categoryid'] == $category_name[0]) ? 'selected' : '';
+            echo '<option value="' . $category_name[0] . '" ' . $selected . '>' . $category_name[1] . '</option>';
+          } 
+          ?>
+          </select>
+        </div>
         <div class="posts" id="posts">
 
           <?php foreach($rows as $row){ ?>
